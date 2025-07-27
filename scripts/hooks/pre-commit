@@ -16,10 +16,24 @@ pr_fmt_violation() {
 	fi
 }
 
+readd_info() {
+	>&2 printf "\nPlease re-add all files:\n"
+	for file in `git diff --cached --name-only`; do
+		>&2 printf "\t*) '${file}'\n"
+		git restore --staged "${file}"
+	done
+
+	exit 1
+}
+
 pushd "${TOPDIR}" || exit 1
 
 LINT_OUT=$(mktemp)
-reuse lint >"${LINT_OUT}" || (cat "${LINT_OUT}" ; exit 1)
+reuse lint >"${LINT_OUT}"
+if [ "${?}" -ne 0 ]; then
+	cat "${LINT_OUT}"
+	readd_info
+fi
 
 for file in ${C_SOURCE}; do
 	# Omit files that follow the preferred formatting style.
@@ -41,11 +55,5 @@ done
 popd
 
 if [ "${CHANGED}" -eq 1 ]; then
-	>&2 printf "\nPlease re-add all files:\n"
-	for file in `git diff --cached --name-only`; do
-		>&2 printf "\t*) '${file}'\n"
-		git restore --staged "${file}"
-	done
-
-	exit 1
+	readd_info
 fi
