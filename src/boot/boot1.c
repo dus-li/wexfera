@@ -1,6 +1,8 @@
 /* SPDX-License-Identifier: GPL-3.0-only */
 /* SPDX-FileCopyrightText: Duszku */
 
+#include <board.h>
+
 #include <arch/fault.h>
 #include <arch/irq.h>
 
@@ -11,7 +13,7 @@
  * Assembly and is responsible for initializing memory and enabling FPU.
  *
  * This function configures faults, relocates IRQ vector table and
- * @todo Clock configuration
+ * @todo SysTick configuration
  * @todo USART configuration
  */
 void _Noreturn boot1(void)
@@ -19,6 +21,8 @@ void _Noreturn boot1(void)
 	fault_enable();
 	irq_relocate();
 	irq_enable();
+
+	board_init_clock();
 
 	for (;;)
 		;

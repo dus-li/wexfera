@@ -7,4 +7,6 @@ board_args = [
   '-mfloat-abi=hard'
 ]
 
-sources += []
+sources += files([
+  'board.c'
+])

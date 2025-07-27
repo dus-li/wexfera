@@ -11,3 +11,10 @@
 
 // Set to 1 if non-maskable interrupt is used for watchdog expiration
 #define BOARD_NMI_IS_WDG (1)
+
+// Board clock frequency (72 MHz)
+#define BOARD_HZ (72000000)
+
+#if !defined(__ASSEMBLER__)
+void board_init_clock(void);
+#endif // !defined(__ASSEMBLER__)
