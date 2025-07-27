@@ -1,0 +1,24 @@
+/* SPDX-License-Identifier: GPL-3.0-only */
+/* SPDX-FileCopyrightText: Duszku */
+
+#pragma once
+
+/**
+ * @file  reg.h
+ * @brief Register operations.
+ */
+
+#include <lib/types.h>
+
+/**
+ * Safely write a 32-bit value after a memory barrier.
+ * @param _val  Value that is to be written.
+ * @param _addr Address where the value is to be written.
+ *
+ * This is an equivalent of @a writel often seen in other projects.
+ */
+#define write32(_val, _addr)                            \
+	do {                                            \
+		asm volatile("dmb");                    \
+		*(volatile u32 *)(_addr) = (u32)(_val); \
+	} while (0)

@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: Duszku
+
+option(
+  'board',
+  type:        'string',
+  value:       'stm32f302r8',
+  description: 'Target board to build for'
+)

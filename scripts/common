@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: Duszku
+
+COLOR_ERR="\033[31m"
+COLOR_CLR="\033[0m"
+
+err() {
+        >&2 printf "${COLOR_ERR}ERROR${COLOR_CLR}\t%s\n" "${@}"
+}
+
+check_exec() {
+    if ! command -v "${@}" >/dev/null 2>&1; then
+        err "${@} not in path"
+        exit 1
+    fi
+}
+
+TOPDIR=$(git rev-parse --show-toplevel)
+
+if [ ! -z "${EXECUTABLES}" ]; then
+	for exe in ${EXECUTABLES}; do
+		check_exec "${exe}"
+	done
+fi

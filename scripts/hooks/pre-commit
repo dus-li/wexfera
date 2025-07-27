@@ -1,0 +1,51 @@
+#!/bin/bash
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: Duszku
+
+EXECUTABLES="reuse clang-format"
+source "$(dirname "${0}")/../common"
+
+C_SOURCE=$(git diff --cached --name-only | grep -E '.+\.(c|h)$')
+CHANGED=0
+
+pr_fmt_violation() {
+	if [ "${CHANGED}" -eq 0 ]; then
+		CHANGED=1
+		err "Formatting violation"
+		>&2 printf 'Modifying non-compliant files:\n'
+	fi
+}
+
+pushd "${TOPDIR}" || exit 1
+
+LINT_OUT=$(mktemp)
+reuse lint >"${LINT_OUT}" || (cat "${LINT_OUT}" ; exit 1)
+
+for file in ${C_SOURCE}; do
+	# Omit files that follow the preferred formatting style.
+	clang-format --style=file --dry-run -Werror "${file}" &>/dev/null
+	if [ "$?" -eq 0 ] || [ ! -e "${file}" ];  then
+		continue
+	fi
+
+	pr_fmt_violation
+
+	# Backup the file in case this non-compliance is intended.
+	tmpfile="$(mktemp /tmp/`basename ${file}.bak.XXXX`)"
+	cp "${file}" "${tmpfile}"
+
+	# Reformat the file and mention it to the user.
+	clang-format --style=file -i "${file}"
+	>&2 printf "\t*) '${file}' (backup saved as '${tmpfile}')\n"
+done
+popd
+
+if [ "${CHANGED}" -eq 1 ]; then
+	>&2 printf "\nPlease re-add all files:\n"
+	for file in `git diff --cached --name-only`; do
+		>&2 printf "\t*) '${file}'\n"
+		git restore --staged "${file}"
+	done
+
+	exit 1
+fi

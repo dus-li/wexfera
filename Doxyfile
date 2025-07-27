@@ -1,0 +1,368 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: Duszku
+
+# Doxyfile 1.13.2
+
+#---------------------------------------------------------------------------
+# Project related configuration options
+#---------------------------------------------------------------------------
+
+DOXYFILE_ENCODING      = UTF-8
+PROJECT_NAME           = "Wexfera"
+PROJECT_NUMBER         = "0.0.1"
+PROJECT_BRIEF          = "Simple ARMv7m Operating System"
+#PROJECT_LOGO           =
+#PROJECT_ICON           =
+OUTPUT_DIRECTORY       = "build/docs"
+CREATE_SUBDIRS         = NO
+#CREATE_SUBDIRS_LEVEL   = 8
+ALLOW_UNICODE_NAMES    = NO
+BRIEF_MEMBER_DESC      = YES
+REPEAT_BRIEF           = YES
+
+ABBREVIATE_BRIEF       = "The $name class" \
+                         "The $name widget" \
+                         "The $name file" \
+                         is \
+                         provides \
+                         specifies \
+                         contains \
+                         represents \
+                         a \
+                         an \
+                         the
+
+ALWAYS_DETAILED_SEC    = YES
+FULL_PATH_NAMES        = YES
+#STRIP_FROM_PATH        =
+#STRIP_FROM_INC_PATH    =
+SHORT_NAMES            = NO
+JAVADOC_AUTOBRIEF      = YES
+JAVADOC_BANNER         = NO
+INHERIT_DOCS           = YES
+SEPARATE_MEMBER_PAGES  = NO
+TAB_SIZE               = 8
+#ALIASES                =
+OPTIMIZE_OUTPUT_FOR_C  = YES
+TOC_INCLUDE_HEADINGS   = 6
+MARKDOWN_ID_STYLE      = DOXYGEN
+AUTOLINK_SUPPORT       = YES
+AUTOLINK_IGNORE_WORDS  =
+GROUP_NESTED_COMPOUNDS = NO
+SUBGROUPING            = YES
+INLINE_GROUPED_CLASSES = NO
+INLINE_SIMPLE_STRUCTS  = NO
+TYPEDEF_HIDES_STRUCT   = NO
+LOOKUP_CACHE_SIZE      = 0
+NUM_PROC_THREADS       = 1
+TIMESTAMP              = DATETIME
+
+#---------------------------------------------------------------------------
+# Build related configuration options
+#---------------------------------------------------------------------------
+
+EXTRACT_ALL            = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+HIDE_UNDOC_MEMBERS     = YES
+HIDE_IN_BODY_DOCS      = NO
+
+INTERNAL_DOCS          = NO
+GENERATE_TODOLIST      = YES
+GENERATE_TESTLIST      = NO
+GENERATE_BUGLIST       = YES
+GENERATE_DEPRECATEDLIST= YES
+
+#LAYOUT_FILE            =
+
+#---------------------------------------------------------------------------
+# Configuration options related to warning and progress messages
+#---------------------------------------------------------------------------
+
+WARN_IF_UNDOCUMENTED   = NO
+WARN_NO_PARAMDOC       = YES
+WARN_IF_UNDOC_ENUM_VAL = NO
+WARN_LAYOUT_FILE       = YES
+
+#---------------------------------------------------------------------------
+# Configuration options related to the input files
+#---------------------------------------------------------------------------
+
+INPUT                  = src/ include/
+#
+# If left blank the following patterns are tested:*.c, *.cc, *.cxx, *.cxxm,
+# *.cpp, *.cppm, *.ccm, *.c++, *.c++m, *.java, *.ii, *.ixx, *.ipp, *.i++, *.inl,
+# *.idl, *.ddl, *.odl, *.h, *.hh, *.hxx, *.hpp, *.h++, *.ixx, *.l, *.cs, *.d,
+# *.php, *.php4, *.php5, *.phtml, *.inc, *.m, *.markdown, *.md, *.mm, *.dox (to
+# be provided as Doxygen C comment), *.py, *.pyw, *.f90, *.f95, *.f03, *.f08,
+# *.f18, *.f, *.for, *.vhd, *.vhdl, *.ucf, *.qsf and *.ice.
+
+FILE_PATTERNS          = *.c \
+                         *.h
+
+RECURSIVE              = YES
+#EXCLUDE                =
+#EXCLUDE_PATTERNS       =
+#EXCLUDE_SYMBOLS        =
+#EXAMPLE_PATH           =
+#EXAMPLE_PATTERNS       = *
+#EXAMPLE_RECURSIVE      = NO
+#IMAGE_PATH             =
+#INPUT_FILTER           =
+#FILTER_PATTERNS        =
+#FILTER_SOURCE_FILES    = NO
+#FILTER_SOURCE_PATTERNS =
+#USE_MDFILE_AS_MAINPAGE =
+IMPLICIT_DIR_DOCS      = YES
+
+#---------------------------------------------------------------------------
+# Configuration options related to source browsing
+#---------------------------------------------------------------------------
+
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+#VERBATIM_HEADERS       = YES
+
+#---------------------------------------------------------------------------
+# Configuration options related to the HTML output
+#---------------------------------------------------------------------------
+
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+HTML_HEADER            =
+HTML_FOOTER            =
+HTML_STYLESHEET        =
+HTML_EXTRA_STYLESHEET  =
+HTML_EXTRA_FILES       =
+HTML_COLORSTYLE        = AUTO_LIGHT
+HTML_COLORSTYLE_HUE    = 20
+HTML_COLORSTYLE_SAT    = 100
+HTML_COLORSTYLE_GAMMA  = 80
+HTML_DYNAMIC_MENUS     = YES
+HTML_DYNAMIC_SECTIONS  = NO
+HTML_CODE_FOLDING      = YES
+HTML_COPY_CLIPBOARD    = YES
+HTML_PROJECT_COOKIE    =
+HTML_INDEX_NUM_ENTRIES = 100
+DISABLE_INDEX          = NO
+GENERATE_TREEVIEW      = YES
+FULL_SIDEBAR           = NO
+ENUM_VALUES_PER_LINE   = 4
+HTML_FORMULA_FORMAT    = svg
+FORMULA_FONTSIZE       = 10
+#FORMULA_MACROFILE      =
+
+#USE_MATHJAX            = NO
+#MATHJAX_VERSION        = MathJax_2
+#MATHJAX_FORMAT         = HTML-CSS
+#MATHJAX_RELPATH        =
+#MATHJAX_EXTENSIONS     =
+#MATHJAX_CODEFILE       =
+
+SEARCHENGINE           = YES
+SERVER_BASED_SEARCH    = NO
+EXTERNAL_SEARCH        = NO
+SEARCHENGINE_URL       =
+SEARCHDATA_FILE        = searchdata.xml
+EXTERNAL_SEARCH_ID     =
+EXTRA_SEARCH_MAPPINGS  =
+
+#---------------------------------------------------------------------------
+# Configuration options related to the LaTeX output
+#---------------------------------------------------------------------------
+
+GENERATE_LATEX         = NO
+
+#---------------------------------------------------------------------------
+# Configuration options related to the RTF output
+#---------------------------------------------------------------------------
+
+GENERATE_RTF           = NO
+
+#---------------------------------------------------------------------------
+# Configuration options related to the man page output
+#---------------------------------------------------------------------------
+
+GENERATE_MAN           = NO
+
+#---------------------------------------------------------------------------
+# Configuration options related to the XML output
+#---------------------------------------------------------------------------
+
+GENERATE_XML           = NO
+
+#---------------------------------------------------------------------------
+# Configuration options related to the DOCBOOK output
+#---------------------------------------------------------------------------
+
+GENERATE_DOCBOOK       = NO
+
+#---------------------------------------------------------------------------
+# Configuration options for the AutoGen Definitions output
+#---------------------------------------------------------------------------
+
+GENERATE_AUTOGEN_DEF   = NO
+
+#---------------------------------------------------------------------------
+# Configuration options related to Sqlite3 output
+#---------------------------------------------------------------------------
+
+GENERATE_SQLITE3       = NO
+
+#---------------------------------------------------------------------------
+# Configuration options related to the preprocessor
+#---------------------------------------------------------------------------
+
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+PREDEFINED             = __attribute__(x)=
+SKIP_FUNCTION_MACROS   = NO
+
+#---------------------------------------------------------------------------
+# Configuration options related to diagram generator tools
+#---------------------------------------------------------------------------
+
+HIDE_UNDOC_RELATIONS   = YES
+HAVE_DOT               = YES
+DOT_NUM_THREADS        = 0
+DOT_COMMON_ATTR        = "fontname=Helvetica,fontsize=10"
+DOT_EDGE_ATTR          = "labelfontname=Helvetica,labelfontsize=10"
+DOT_NODE_ATTR          = "shape=box,height=0.2,width=0.4"
+DOT_FONTPATH           =
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = YES
+GROUP_GRAPHS           = YES
+UML_LOOK               = YES
+UML_LIMIT_NUM_FIELDS   = 10
+DOT_UML_DETAILS        = NO
+DOT_WRAP_THRESHOLD     = 17
+TEMPLATE_RELATIONS     = NO
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
+GRAPHICAL_HIERARCHY    = YES
+DIRECTORY_GRAPH        = YES
+DIR_GRAPH_MAX_DEPTH    = 1
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES
+
+# The DOT_PATH tag can be used to specify the path where the dot tool can be
+# found. If left blank, it is assumed the dot tool can be found in the path.
+# This tag requires that the tag HAVE_DOT is set to YES.
+
+DOT_PATH               =
+
+# The DOTFILE_DIRS tag can be used to specify one or more directories that
+# contain dot files that are included in the documentation (see the \dotfile
+# command).
+# This tag requires that the tag HAVE_DOT is set to YES.
+
+DOTFILE_DIRS           =
+
+# You can include diagrams made with dia in Doxygen documentation. Doxygen will
+# then run dia to produce the diagram and insert it in the documentation. The
+# DIA_PATH tag allows you to specify the directory where the dia binary resides.
+# If left empty dia is assumed to be found in the default search path.
+
+DIA_PATH               =
+
+# The DIAFILE_DIRS tag can be used to specify one or more directories that
+# contain dia files that are included in the documentation (see the \diafile
+# command).
+
+DIAFILE_DIRS           =
+
+# When using PlantUML, the PLANTUML_JAR_PATH tag should be used to specify the
+# path where java can find the plantuml.jar file or to the filename of jar file
+# to be used. If left blank, it is assumed PlantUML is not used or called during
+# a preprocessing step. Doxygen will generate a warning when it encounters a
+# \startuml command in this case and will not generate output for the diagram.
+
+PLANTUML_JAR_PATH      =
+
+# When using PlantUML, the PLANTUML_CFG_FILE tag can be used to specify a
+# configuration file for PlantUML.
+
+PLANTUML_CFG_FILE      =
+
+# When using PlantUML, the specified paths are searched for files specified by
+# the !include statement in a PlantUML block.
+
+PLANTUML_INCLUDE_PATH  =
+
+# The PLANTUMLFILE_DIRS tag can be used to specify one or more directories that
+# contain PlantUml files that are included in the documentation (see the
+# \plantumlfile command).
+
+PLANTUMLFILE_DIRS      =
+
+# The DOT_GRAPH_MAX_NODES tag can be used to set the maximum number of nodes
+# that will be shown in the graph. If the number of nodes in a graph becomes
+# larger than this value, Doxygen will truncate the graph, which is visualized
+# by representing a node as a red box. Note that if the number of direct
+# children of the root node in a graph is already larger than
+# DOT_GRAPH_MAX_NODES then the graph will not be shown at all. Also note that
+# the size of a graph can be further restricted by MAX_DOT_GRAPH_DEPTH.
+# Minimum value: 0, maximum value: 10000, default value: 50.
+# This tag requires that the tag HAVE_DOT is set to YES.
+
+DOT_GRAPH_MAX_NODES    = 50
+
+# The MAX_DOT_GRAPH_DEPTH tag can be used to set the maximum depth of the graphs
+# generated by dot. A depth value of 3 means that only nodes reachable from the
+# root by following a path via at most 3 edges will be shown. Nodes that lay
+# further from the root node will be omitted. Note that setting this option to 1
+# or 2 may greatly reduce the computation time needed for large code bases. Also
+# note that the size of a graph can be further restricted by
+# DOT_GRAPH_MAX_NODES. Using a depth of 0 means no depth restriction.
+# Minimum value: 0, maximum value: 1000, default value: 0.
+# This tag requires that the tag HAVE_DOT is set to YES.
+
+MAX_DOT_GRAPH_DEPTH    = 0
+
+# Set the DOT_MULTI_TARGETS tag to YES to allow dot to generate multiple output
+# files in one run (i.e. multiple -o and -T options on the command line). This
+# makes dot run faster, but since only newer versions of dot (>1.8.10) support
+# this, this feature is disabled by default.
+# The default value is: NO.
+# This tag requires that the tag HAVE_DOT is set to YES.
+
+DOT_MULTI_TARGETS      = NO
+
+# If the GENERATE_LEGEND tag is set to YES Doxygen will generate a legend page
+# explaining the meaning of the various boxes and arrows in the dot generated
+# graphs.
+# Note: This tag requires that UML_LOOK isn't set, i.e. the Doxygen internal
+# graphical representation for inheritance and collaboration diagrams is used.
+# The default value is: YES.
+# This tag requires that the tag HAVE_DOT is set to YES.
+
+GENERATE_LEGEND        = YES
+
+# If the DOT_CLEANUP tag is set to YES, Doxygen will remove the intermediate
+# files that are used to generate the various graphs.
+#
+# Note: This setting is not only used for dot files but also for msc temporary
+# files.
+# The default value is: YES.
+
+DOT_CLEANUP            = YES
+
+# You can define message sequence charts within Doxygen comments using the \msc
+# command. If the MSCGEN_TOOL tag is left empty (the default), then Doxygen will
+# use a built-in version of mscgen tool to produce the charts. Alternatively,
+# the MSCGEN_TOOL tag can also specify the name an external tool. For instance,
+# specifying prog as the value, Doxygen will call the tool as prog -T
+# <outfile_format> -o <outputfile> <inputfile>. The external tool should support
+# output file formats "png", "eps", "svg", and "ismap".
+
+MSCGEN_TOOL            =
+
+# The MSCFILE_DIRS tag can be used to specify one or more directories that
+# contain msc files that are included in the documentation (see the \mscfile
+# command).
+
+MSCFILE_DIRS           =

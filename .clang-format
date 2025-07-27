@@ -1,0 +1,73 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# SPDX-FileCopyrightText: Duszku
+
+---
+BasedOnStyle: WebKit
+AlignAfterOpenBracket: DontAlign
+AlignConsecutiveAssignments:
+  Enabled: true
+  AlignCompound: true
+
+AlignConsecutiveBitFields: true
+AlignConsecutiveDeclarations: true
+AlignConsecutiveMacros: true
+AlignEscapedNewlines: Left
+AlignOperands: false
+AlignTrailingComments: true
+AllowAllArgumentsOnNextLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortBlocksOnASingleLine: Never
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: InlineOnly
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AlwaysBreakAfterReturnType: Automatic
+AlwaysBreakBeforeMultilineStrings: false
+AlwaysBreakTemplateDeclarations: MultiLine
+BinPackArguments: false
+BinPackParameters: true
+BreakBeforeBinaryOperators: None
+BreakBeforeBraces: WebKit
+BreakBeforeTernaryOperators: false
+
+# Strings are often grepped for. Make it easier for people.
+BreakStringLiterals: false
+
+PenaltyBreakAssignment: 100
+PenaltyBreakBeforeFirstCallParameter: 100
+DerivePointerAlignment: false
+DisableFormat: false
+#ForEachMacros:
+#  - list_foreach
+
+IndentCaseLabels: false
+IndentPPDirectives: None
+Language: Cpp
+NamespaceIndentation: None
+PointerAlignment: Right
+ContinuationIndentWidth: 4
+IndentWidth: 8
+TabWidth: 8
+ColumnLimit: 80
+UseTab: AlignWithSpaces
+SpaceAfterCStyleCast: false
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '<board.h>'
+    Priority: 1
+    SortPriority: 10
+  - Regex: '^<asm/.*\.h'
+    Priority: 2
+    SortPriority: 20
+  - Regex: '^<arch/.*\.h'
+    Priority: 3
+    SortPriority: 30
+  - Regex: '^<lib/.*\.h'
+    Priority: 4
+    SortPriority: 40
+
+IncludeIsMainRegex: 'NOTHING_AKJSDHFKJAHD87F6A8S70DUHAKJSNBDVASDJHFAUISHF'
+SortIncludes: true
+KeepEmptyLinesAtTheStartOfBlocks: true
+#TypenameMacros:
+#  - LIST_HEAD
