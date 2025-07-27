@@ -2,7 +2,8 @@
 # SPDX-FileCopyrightText: Duszku
 
 sources += files([
-  'irq.c',
+  'corevtab.S',
   'fault.c',
   'faults.S',
+  'irq.c',
 ])

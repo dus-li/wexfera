@@ -4,5 +4,4 @@
 sources += files([
   'boot0.S',
   'boot1.c',
-  'corevtab.S',
 ])
