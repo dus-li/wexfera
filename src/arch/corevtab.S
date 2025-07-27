@@ -36,5 +36,5 @@ BEGIN_GLOBAL_OBJECT(__corevtab)
 	.word	0
 
 	default // PendSV
-	default // SysTick
+	.word	__systick_isr
 END_OBJECT(__corevtab)

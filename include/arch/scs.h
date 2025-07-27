@@ -8,6 +8,8 @@
  * @brief System Control Space registers.
  */
 
+#include <lib/bits.h>
+
 /**
  * @defgroup scbRegisters System Control Block registers.
  * @brief    Addresses of architecture-defined SCB registers.
@@ -21,14 +23,26 @@
 
 /** @} */ // scbRegisters
 
+/**
+ * @defgroup systRegisters SysTick registers.
+ * @brief    Addresses of architecture-defined SysTick registers.
+ * @{
+ */
+
+#define SCS_SYST_BASE (0xE000E010)
+#define SCS_SYST_CSR  (SCS_SYST_BASE + 0x00)
+#define SCS_SYST_RVR  (SCS_SYST_BASE + 0x04)
+#define SCS_SYST_CVR  (SCS_SYST_BASE + 0x08)
+
+/** @} */ // systRegisters
+
 /// Full access bits for CP10 and CP11 to control FPU.
-#define SCS_SCB_CPACR_FPU_FULL (0xF << 20)
+#define SCS_SCB_CPACR_FPU_FULL BITS(23, 20)
 
-/// UsageFault enable bit.
-#define SCS_SCB_SHCSR_USGFAULTENA (1 << 18)
+#define SCS_SCB_SHCSR_USGFAULTENA (1U << 18) ///< UsageFault enable bit.
+#define SCS_SCB_SHCSR_BUSFAULTENA (1U << 17) ///< BusFault enable bit.
+#define SCS_SCB_SHCSR_MEMFAULTENA (1U << 16) ///< MemManage fault enable bit.
 
-/// BusFault enable bit.
-#define SCS_SCB_SHCSR_BUSFAULTENA (1 << 17)
-
-/// MemManage fault enable bit.
-#define SCS_SCB_SHCSR_MEMFAULTENA (1 << 16)
+#define SCS_SYST_CSR_ENABLE    (1U << 0) ///< SysTick enable bit.
+#define SCS_SYST_CSR_TICKINT   (1U << 1) ///< SysTick interrupt enable bit.
+#define SCS_SYST_CSR_CLKSOURCE (1U << 2) ///< If set, SysTick uses CPU clock.
