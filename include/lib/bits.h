@@ -11,8 +11,10 @@
 #include <lib/compiler.h>
 #include <lib/types.h>
 
-#define _BITS(_upto)   ((_upto) < 32 ? ~0U >> (31 - (_upto)) : ~0U)
-#define BITS(_hi, _lo) (_BITS(_hi) & ~((_lo) == 0 ? 0 : _BITS((_lo) - 1)))
+#define _BITS(_upto) \
+	((_upto) == 0 ? 1U : (_upto) > 31 ? ~0U : ~0U >> (31 - (_upto)))
+
+#define BITS(_hi, _lo) (_BITS(_hi) & (~_BITS(_lo) >> 1))
 
 #define BITS_CONS(_val, _mask) \
 	(((_val) & ((_mask) >> ctz(_mask))) << ctz(_mask))
