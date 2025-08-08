@@ -7,6 +7,11 @@ board_args = [
   '-mfloat-abi=hard'
 ]
 
+drivers += [
+  'usart/stm32',
+  'gpio/stm32',
+]
+
 sources += files([
   'board.c'
 ])

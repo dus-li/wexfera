@@ -12,9 +12,13 @@
 // Set to 1 if non-maskable interrupt is used for watchdog expiration
 #define BOARD_NMI_IS_WDG (1)
 
-// Board clock frequency (72 MHz)
-#define BOARD_HZ (72000000)
+// Board clock frequency (36 MHz)
+#define BOARD_HZ (36000000)
+
+// Function used for logging
+#define BOARD_LOG_BACKEND board_log_be
 
 #if !defined(__ASSEMBLER__)
 void board_init_clock(void);
+void board_log_be(char c);
 #endif // !defined(__ASSEMBLER__)

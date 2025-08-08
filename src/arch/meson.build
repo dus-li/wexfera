@@ -6,4 +6,5 @@ sources += files([
   'fault.c',
   'faults.S',
   'irq.c',
+  'timer.c',
 ])

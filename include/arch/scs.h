@@ -8,8 +8,6 @@
  * @brief System Control Space registers.
  */
 
-#include <lib/bits.h>
-
 /**
  * @defgroup scbRegisters System Control Block registers.
  * @brief    Addresses of architecture-defined SCB registers.
@@ -37,7 +35,7 @@
 /** @} */ // systRegisters
 
 /// Full access bits for CP10 and CP11 to control FPU.
-#define SCS_SCB_CPACR_FPU_FULL BITS(23, 20)
+#define SCS_SCB_CPACR_FPU_FULL (0xF00000)
 
 #define SCS_SCB_SHCSR_USGFAULTENA (1U << 18) ///< UsageFault enable bit.
 #define SCS_SCB_SHCSR_BUSFAULTENA (1U << 17) ///< BusFault enable bit.

@@ -7,6 +7,8 @@
 #include <arch/irq.h>
 #include <arch/timer.h>
 
+#include <boot/sequence.h>
+
 /**
  * Configure core system peripherals and platforms, start scheduler.
  *
@@ -26,6 +28,19 @@ void _Noreturn boot1(void)
 	irq_enable();
 
 	board_init_clock();
+	seq_run_early_init();
+
+	board_log_be('\r');
+	board_log_be('\n');
+	board_log_be('W');
+	board_log_be('e');
+	board_log_be('x');
+	board_log_be('f');
+	board_log_be('e');
+	board_log_be('r');
+	board_log_be('a');
+	board_log_be('\r');
+	board_log_be('\n');
 
 	// TODO: Set up logging.
 

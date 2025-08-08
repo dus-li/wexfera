@@ -2,7 +2,5 @@
 # SPDX-FileCopyrightText: Duszku
 
 sources += files([
-  'boot0.S',
-  'boot1.c',
-  'sequence.c',
+  'stm32.c'
 ])

@@ -36,3 +36,23 @@
 		asm volatile("dmb");      \
 		*(volatile u32 *)(_addr); \
 	})
+
+/**
+ * Bitwise-sum a value with existing data in a register.
+ * @param _val  Value that is to be added.
+ * @param _addr Address to update.
+ *
+ * This captures a pattern of ORing a value to a readl result and then writing
+ * it back, often seen in other projects.
+ */
+#define union32(_val, _addr) write32((_val) | read32(_addr), (_addr))
+
+/**
+ * Bitwise set difference with existing data in a register.
+ * @param _val  Value that is to be subtracted (cleared).
+ * @param _addr Address to update.
+ *
+ * This captures a pattern of ANDing an inverse of a value with readl result and
+ * then writing it back, often seen in other projects.
+ */
+#define diff32(_val, _addr) write32(~((u32)(_val)) & read32(_addr), (_addr))

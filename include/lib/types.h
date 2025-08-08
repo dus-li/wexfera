@@ -11,5 +11,7 @@
 typedef unsigned char u8;
 typedef unsigned int  u32;
 
+typedef int i32;
+
 typedef u8 bool;
 typedef u32 size_t;

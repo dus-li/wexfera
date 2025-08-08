@@ -38,7 +38,12 @@ SECTIONS
 		. = ALIGN(4);
 		LD_DATA_BEG = .;
 		*(.data)
-		*(.data*)
+
+		LD_DATA_SEQ_EARLY_BEG = .;
+		KEEP(*(.data.seq.early))
+		LD_DATA_SEQ_EARLY_END = .;
+
+		*(.data.*)
 		. = ALIGN(4);
 		LD_DATA_END = .;
 	} >sram

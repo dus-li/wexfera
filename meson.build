@@ -6,6 +6,7 @@ project('wexfera', 'c', version: '0.0.1')
 fs = import('fs')
 
 sources = []
+drivers = []
 subdir('src')
 
 objcopy = find_program('arm-none-eabi-objcopy')
@@ -34,6 +35,10 @@ includes = include_directories([
   'include',
   'board/' + board + '/include'
 ])
+
+foreach driver : drivers
+  subdir('src/drivers/' + driver)
+endforeach
 
 # Pull memory linker script for a board
 memory_ld = configure_file(
