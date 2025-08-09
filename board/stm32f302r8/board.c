@@ -1,11 +1,12 @@
 /* SPDX-License-Identifier: GPL-3.0-only */
 /* SPDX-FileCopyrightText: Duszku */
 
+#include <boot/sequence.h>
+
 #include <lib/bits.h>
 #include <lib/log.h>
 #include <lib/reg.h>
 
-#include <boot/sequence.h>
 #include <drivers/usart/stm32.h>
 
 #define RCC_BASE    (0x40021000)

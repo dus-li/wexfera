@@ -9,12 +9,12 @@
 #include <arch/irq.h>
 #include <arch/timer.h>
 
-#include <lib/log.h>
-
 #include <boot/sequence.h>
 
+#include <lib/log.h>
+
 #if !defined(BUILD_VERSION)
-#define BUILD_VERSION (unknown)
+  #define BUILD_VERSION (unknown)
 #endif
 
 #define VERSION STRINGIFY(BUILD_VERSION) " (build " __DATE__ " " __TIME__ ")"

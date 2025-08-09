@@ -41,7 +41,8 @@ DisableFormat: false
 #  - list_foreach
 
 IndentCaseLabels: false
-IndentPPDirectives: None
+IndentPPDirectives: BeforeHash
+PPIndentWidth: 2
 Language: Cpp
 NamespaceIndentation: None
 PointerAlignment: Right
@@ -62,9 +63,15 @@ IncludeCategories:
   - Regex: '^<arch/.*\.h'
     Priority: 3
     SortPriority: 30
-  - Regex: '^<lib/.*\.h'
+  - Regex: '^<boot/.*\.h'
     Priority: 4
     SortPriority: 40
+  - Regex: '^<lib/.*\.h'
+    Priority: 5
+    SortPriority: 50
+  - Regex: '^<drivers/.*\.h'
+    Priority: 6
+    SortPriority: 60
 
 IncludeIsMainRegex: 'NOTHING_AKJSDHFKJAHD87F6A8S70DUHAKJSNBDVASDJHFAUISHF'
 SortIncludes: true

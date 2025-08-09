@@ -1,10 +1,10 @@
 /* SPDX-License-Identifier: GPL-3.0-only */
 /* SPDX-FileCopyrightText: Duszku */
 
+#include <boot/sequence.h>
+
 #include <lib/compiler.h>
 #include <lib/types.h>
-
-#include <boot/sequence.h>
 
 extern void *const LD_DATA_SEQ_EARLY_BEG;
 extern void *const LD_DATA_SEQ_EARLY_END;

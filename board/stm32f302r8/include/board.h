@@ -19,7 +19,7 @@
 #define BOARD_LOG_BACKEND board_log_be
 
 #if !defined(__ASSEMBLER__)
-#include <lib/log.h>
+  #include <lib/log.h>
 
 // Log level
 extern const enum log_levels BOARD_LOG_LEVEL;
