@@ -115,6 +115,9 @@ static int _log_proc_x(const char str[16], va_list *args, const char *beg,
 	for (i = 0; i < ARRAY_SIZE(buf) && val != 0; ++i, val >>= 4)
 		buf[i] = str[val & 0xF];
 
+	if (i == 0)
+		buf[i++] = '0';
+
 	if (with_0x) {
 		buf[i++] = 'x';
 		buf[i++] = '0';
@@ -123,12 +126,8 @@ static int _log_proc_x(const char str[16], va_list *args, const char *beg,
 	for (; i < width; ++i)
 		buf[i] = ' ';
 
-	if (i == 0)
-		board_log_be('0');
-	else {
-		while (i-- >= 0)
-			board_log_be(buf[i]);
-	}
+	while (i-- >= 0)
+		board_log_be(buf[i]);
 
 	return ERR_NONE;
 }
