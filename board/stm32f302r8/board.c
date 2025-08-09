@@ -2,6 +2,7 @@
 /* SPDX-FileCopyrightText: Duszku */
 
 #include <lib/bits.h>
+#include <lib/log.h>
 #include <lib/reg.h>
 
 #include <boot/sequence.h>
@@ -33,6 +34,8 @@
 
 #define HCLK_DIV_2      (0b100)
 #define RCC_CFGR_SW_PLL (0b10)
+
+const enum log_levels BOARD_LOG_LEVEL = LOG_DEBUG;
 
 void board_init_clock(void)
 {

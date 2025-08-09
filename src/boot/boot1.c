@@ -1,13 +1,23 @@
 /* SPDX-License-Identifier: GPL-3.0-only */
 /* SPDX-FileCopyrightText: Duszku */
 
+#define LOG_FMT(_fmt) _fmt
+
 #include <board.h>
 
 #include <arch/fault.h>
 #include <arch/irq.h>
 #include <arch/timer.h>
 
+#include <lib/log.h>
+
 #include <boot/sequence.h>
+
+#if !defined(BUILD_VERSION)
+#define BUILD_VERSION (unknown)
+#endif
+
+#define VERSION STRINGIFY(BUILD_VERSION) " (build " __DATE__ " " __TIME__ ")"
 
 /**
  * Configure core system peripherals and platforms, start scheduler.
@@ -30,19 +40,7 @@ void _Noreturn boot1(void)
 	board_init_clock();
 	seq_run_early_init();
 
-	board_log_be('\r');
-	board_log_be('\n');
-	board_log_be('W');
-	board_log_be('e');
-	board_log_be('x');
-	board_log_be('f');
-	board_log_be('e');
-	board_log_be('r');
-	board_log_be('a');
-	board_log_be('\r');
-	board_log_be('\n');
-
-	// TODO: Set up logging.
+	log_always("\nThis is Wexfera %s\n", VERSION);
 
 	timer_configure();
 

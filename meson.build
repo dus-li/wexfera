@@ -55,6 +55,8 @@ elf_basename  = 'wexfera'
 elf_extension = 'elf'
 elf_out       = elf_basename + '.' + elf_extension
 
+c_args += '-DBUILD_VERSION=@0@'.format(meson.project_version())
+
 elf = executable(
   elf_basename,
   sources,

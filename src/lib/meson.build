@@ -2,5 +2,7 @@
 # SPDX-FileCopyrightText: Duszku
 
 sources += files([
-  'string.c'
+  'log.c',
+  'string.c',
+  'types.c',
 ])
