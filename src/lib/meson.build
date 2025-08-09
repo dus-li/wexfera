@@ -5,6 +5,5 @@ subdir('string')
 
 sources += files([
   'log.c',
-  'string.c',
   'types.c',
 ])
