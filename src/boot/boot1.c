@@ -27,9 +27,6 @@
  *
  * This function configures faults, relocates IRQ vector table and configures
  * the board clock.
- *
- * @todo USART configuration
- * @todo SysTick configuration
  */
 void _Noreturn boot1(void)
 {

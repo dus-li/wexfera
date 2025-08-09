@@ -1,10 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
 # SPDX-FileCopyrightText: Duszku
 
-subdir('string')
-
 sources += files([
-  'log.c',
-  'string.c',
-  'types.c',
+  '__aeabi_memcpy.S'
 ])
