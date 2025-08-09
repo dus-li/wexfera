@@ -8,7 +8,7 @@
 	.word	_irq_def_handler
 .endmacro
 
-SECTION(.corevtab, SHF_ALLOC, SHT_PROGBITS)
+SECTION(.vtab, SHF_ALLOC, SHT_PROGBITS)
 BEGIN_GLOBAL_OBJECT(__corevtab)
 	.word	LD_STACK_END
 	.word	boot0

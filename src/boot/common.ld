@@ -53,7 +53,9 @@ SECTIONS
 		. = ALIGN(4);
 		LD_BSS_BEG = .;
 		*(.bss)
-		*(.bss*)
+		. = ALIGN(128);
+		KEEP(*(.bss.dynvtab))
+		*(.bss.*)
 		*(COMMON)
 		. = ALIGN(4);
 		LD_BSS_END = .;

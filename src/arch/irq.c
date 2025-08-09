@@ -21,9 +21,8 @@
  */
 static irq_handler_t _irq_dynvtab[IRQ_NUMBER] __section(".bss.dynvtab");
 
-extern void *const LD_COREVTAB_BEG;
-extern void *const LD_COREVTAB_END;
-#define IRQ_COREVTAB_SIZE (LD_COREVTAB_END - LD_COREVTAB_BEG)
+extern const u32 LD_COREVTAB_BEG;
+extern const u32 LD_COREVTAB_END;
 
 /**
  * Default IRQ handler.
@@ -39,6 +38,11 @@ void __used _irq_def_handler(void)
 
 void irq_relocate(void)
 {
+	const void *core_beg = &LD_COREVTAB_BEG;
+	const void *core_end = &LD_COREVTAB_END;
+	size_t      len      = core_end - core_beg;
+	u32         addr;
+
 	// ARMv7m defines first 16 fields of the vector tab.
 	_Static_assert(IRQ_NUMBER >= IRQ_CORE_NUMBER,
 	    "Number of board Irq must not be smaller than 16");
@@ -47,9 +51,10 @@ void irq_relocate(void)
 	    "Number of board Irq must not exceed NVIC maximum");
 
 	// Keep core interrupts, assign default to the rest.
-	memcpy(_irq_dynvtab, LD_COREVTAB_BEG, IRQ_COREVTAB_SIZE);
+	memcpy(_irq_dynvtab, core_beg, len);
 	for (int i = IRQ_CORE_NUMBER; i < IRQ_NUMBER; ++i)
 		_irq_dynvtab[i] = _irq_def_handler;
 
-	write32(_irq_dynvtab, SCS_SCB_VTOR);
+	addr = ((u32)_irq_dynvtab) & 0xFFFFFF80;
+	write32(addr, SCS_SCB_VTOR);
 }
