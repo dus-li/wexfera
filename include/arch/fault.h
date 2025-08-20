@@ -8,28 +8,31 @@
  * @brief Fault-related declarations and constants.
  */
 
+#include <lib/check.h>
 #include <lib/compiler.h>
+#include <lib/preproc.h>
+#include <lib/types.h>
 
-/**
- * @defgroup faultConstants Fault Constants
- * @brief    Numerical codes denoting different types of faults.
- *
- * Under Wexfera all faults are funneled into the same handler after some
- * initial processing done in Assembly. The fault-specific vectors set one of
- * the fault constant flags to inform the catch-all handler what specific issue
- * has taken place.
- *
- * @{
- */
+#define FAULT_GPRS_NO (13)
 
-#define FAULT_HARDFAULT  (0) ///< HardFault
-#define FAULT_MEMMANAGE  (1) ///< MemManage Fault
-#define FAULT_BUSFAULT   (2) ///< BusFault
-#define FAULT_USAGEFAULT (3) ///< UsageFault
+struct fault_regs {
+	u32 r[FAULT_GPRS_NO];
+	u32 lr;
+	u32 sp;
+	u32 pc;
+	u32 psr;
+	u32 primask;
+	u32 control;
+};
 
-/** @} */ // faultConstants
+typedef void (*fault_hook_t)(const struct fault_regs *);
 
-#if !defined(__ASSEMBLER__)
+#define __FAULT_HOOKS_SEC ".data.fault.hooks"
+
+#define FAULT_HOOK(_fn)                                         \
+	CHECK_BUILDTIME(same_type(typeof(&_fn), fault_hook_t)); \
+	const fault_hook_t __section(__FAULT_HOOKS_SEC)         \
+	    CONCAT(__fault_hook, __LINE__) = (_fn);
 
 /**
  * Enable faults.
@@ -40,5 +43,3 @@
  * is responsible for enabling them.
  */
 void fault_enable(void);
-
-#endif // !defined(__ASSEMBLER__)

@@ -19,10 +19,10 @@ BEGIN_GLOBAL_OBJECT(__corevtab)
 	default
 #endif
 
-	.word	__fault_hardfault
-	.word	__fault_memmanage
-	.word	__fault_busfault
-	.word	__fault_usagefault
+	.word	__fault_dispatcher // HardFault
+	.word	__fault_dispatcher // MemManage
+	.word	__fault_dispatcher // BusFault
+	.word	__fault_dispatcher // UsageFault
 
 	// Reserved 7-10
 	.rept	4

@@ -39,9 +39,15 @@ SECTIONS
 		LD_DATA_BEG = .;
 		*(.data)
 
+		/* Boot sequence hooks */
 		LD_DATA_SEQ_EARLY_BEG = .;
 		KEEP(*(.data.seq.early))
 		LD_DATA_SEQ_EARLY_END = .;
+
+		/* Fault handler hooks */
+		LD_DATA_FAULT_HOOKS_BEG = .;
+		KEEP(*(.data.fault.hooks))
+		LD_DATA_FAULT_HOOKS_END = .;
 
 		*(.data.*)
 		. = ALIGN(4);

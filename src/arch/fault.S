@@ -2,38 +2,19 @@
 /* SPDX-FileCopyrightText: Duszku */
 
 #include <asm/helpers.h>
-#include <arch/fault.h>
 
-// Check which stack pointer was active during the fault and put it in reg.
-.macro SPSAVE reg
+#define PRIMASK_PM (1)
+
+BEGIN_GLOBAL_FUNCTION(__fault_dispatcher)
+	// Check which stack pointer was active during the fault. Put it in R0.
 	TST	lr, #4
 	ITE	eq
-	MRSEQ	\reg, msp
-	MRSNE	\reg, psp
-.endmacro
+	MRSEQ	r0, msp
+	MRSNE	r0, psp
 
-// Branch to dispatcher
-.macro BDISP constant
-	SPSAVE	r0
-	MOV	r1, \constant
+	// Jump to HLL
 	B	fault_dispatcher
-.endmacro
-
-BEGIN_GLOBAL_FUNCTION(__fault_hardfault)
-	BDISP	#FAULT_HARDFAULT
-END_FUNCTION(__fault_hardfault)
-
-BEGIN_GLOBAL_FUNCTION(__fault_memmanage)
-	BDISP	#FAULT_MEMMANAGE
-END_FUNCTION(__fault_memmanage)
-
-BEGIN_GLOBAL_FUNCTION(__fault_busfault)
-	BDISP	#FAULT_BUSFAULT
-END_FUNCTION(__fault_busfault)
-
-BEGIN_GLOBAL_FUNCTION(__fault_usagefault)
-	BDISP	#FAULT_USAGEFAULT
-END_FUNCTION(__fault_usagefault)
+END_FUNCTION(__fault_dispatcher)
 
 BEGIN_GLOBAL_FUNCTION(__fault_regs_collect)
 	// Save GPRs
