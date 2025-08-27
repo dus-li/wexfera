@@ -5,7 +5,7 @@
 
 /**
  * @file  compiler.h
- * @brief Compiler builtins and attributes.
+ * @brief Compiler builtins and attributes and pseudo-keywords.
  */
 
 #define __closed                __attribute__((enum_extensibility(closed)))
@@ -18,3 +18,6 @@
 
 #define same_type(_fst, _snd) \
 	__builtin_types_compatible_p(typeof(_fst), typeof(_snd))
+
+#define fallthrough __attribute__((fallthrough))
+#define loop        for (;;)

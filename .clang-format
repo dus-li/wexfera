@@ -37,8 +37,9 @@ PenaltyBreakAssignment: 100
 PenaltyBreakBeforeFirstCallParameter: 100
 DerivePointerAlignment: false
 DisableFormat: false
-#ForEachMacros:
-#  - list_foreach
+ForEachMacros:
+  - list_foreach
+  - loop
 
 IndentCaseLabels: false
 IndentPPDirectives: BeforeHash

@@ -8,6 +8,8 @@
  * @brief Register operations.
  */
 
+#include <arch/barriers.h>
+
 #include <lib/types.h>
 
 /**
@@ -20,7 +22,7 @@
  */
 #define write32(_val, _addr)                            \
 	do {                                            \
-		asm volatile("dmb");                    \
+		__data_barrier;                         \
 		*(volatile u32 *)(_addr) = (u32)(_val); \
 	} while (0)
 
@@ -33,7 +35,7 @@
  */
 #define read32(_addr)                     \
 	({                                \
-		asm volatile("dmb");      \
+		__data_barrier;           \
 		*(volatile u32 *)(_addr); \
 	})
 

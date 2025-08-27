@@ -3,8 +3,9 @@
 
 sources += files([
   'corevtab.S',
-  'fault.c',
   'fault.S',
+  'fault.c',
   'irq.c',
+  'spinlock.c',
   'timer.c',
 ])
