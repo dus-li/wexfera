@@ -37,8 +37,8 @@ PenaltyBreakAssignment: 100
 PenaltyBreakBeforeFirstCallParameter: 100
 DerivePointerAlignment: false
 DisableFormat: false
-#ForEachMacros:
-#  - list_foreach
+ForEachMacros:
+  - list_foreach
 
 IndentCaseLabels: false
 IndentPPDirectives: BeforeHash
@@ -66,15 +66,18 @@ IncludeCategories:
   - Regex: '^<boot/.*\.h'
     Priority: 4
     SortPriority: 40
-  - Regex: '^<lib/.*\.h'
+  - Regex: '^<kernel/.*\.h'
     Priority: 5
     SortPriority: 50
-  - Regex: '^<drivers/.*\.h'
+  - Regex: '^<lib/.*\.h'
     Priority: 6
     SortPriority: 60
+  - Regex: '^<drivers/.*\.h'
+    Priority: 7
+    SortPriority: 70
 
 IncludeIsMainRegex: 'NOTHING_AKJSDHFKJAHD87F6A8S70DUHAKJSNBDVASDJHFAUISHF'
 SortIncludes: true
 KeepEmptyLinesAtTheStartOfBlocks: true
-#TypenameMacros:
-#  - LIST_HEAD
+TypenameMacros:
+  - LIST_HEAD
