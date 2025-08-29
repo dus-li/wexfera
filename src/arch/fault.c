@@ -214,6 +214,7 @@ static void _fault_log(struct fault_regs *full, unsigned type)
 
 	log_always("PC was %#10X\n", full->pc);
 	log_always("LR was %#10X\n", full->lr);
+	log_always("SP was %#10X\n", full->sp);
 	__fault_log_sep();
 
 	// Log GPR values

@@ -12,6 +12,9 @@
 // Set to 1 if non-maskable interrupt is used for watchdog expiration
 #define BOARD_NMI_IS_WDG (1)
 
+// Set to 1 to enable debug features
+#define BOARD_DEBUG_FEATURES (0)
+
 // Board clock frequency (36 MHz)
 #define BOARD_HZ (36000000)
 

@@ -66,4 +66,12 @@ SECTIONS
 		. = ALIGN(4);
 		LD_BSS_END = .;
 	} >sram
+
+	.dynallocs :
+	{
+		. = ALIGN(8);
+		LD_DYNALLOCS_BEG = .;
+		. = . + LD_HEAP_SIZE;
+		LD_DYNALLOCS_END = .;
+	}
 }

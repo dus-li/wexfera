@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
 # SPDX-FileCopyrightText: Duszku
 
-subdir('arch')
-subdir('boot')
-subdir('kernel')
-subdir('lib')
+sources += files([
+  'alloc.c'
+])
