@@ -18,3 +18,10 @@
  */
 #define ROUND_UP(what, how) \
 	((how) * ((what) / (how)) + ((what) % (how)) != 0 ? (how) : 0)
+
+/**
+ * Align a number to a value.
+ * @param what Number that is to be aligned.
+ * @param how  Value that we want to align to.
+ */
+#define ALIGN(what, how) (((what) + ((how) - 1)) & ~((how) - 1))

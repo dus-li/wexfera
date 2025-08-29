@@ -11,6 +11,8 @@
 
 #include <boot/sequence.h>
 
+#include <kernel/alloc.h>
+
 #include <lib/log.h>
 
 #if !defined(BUILD_VERSION)
@@ -40,6 +42,7 @@ void _Noreturn boot1(void)
 	log_always("\nThis is Wexfera %s\n", VERSION);
 
 	timer_configure();
+	alloc_init();
 
 	// TODO: Enter scheduler.
 

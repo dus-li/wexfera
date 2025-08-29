@@ -20,6 +20,7 @@ typedef u8 bool;
 #define true  1
 
 typedef u32 size_t;
+typedef u32 uintptr_t;
 
 typedef __builtin_va_list va_list;
 #define va_start(_list, _last) __builtin_va_start(_list, _last)
