@@ -4,11 +4,14 @@
 #pragma once
 
 enum errors {
-	ERR_NONE,    ///< No error ocurred.
-	ERR_ARG,     ///< Invalid argument.
-	ERR_DONE,    ///< Operation was done already.
-	ERR_MEM,     ///< Not enough memory.
-	ERR_CORRUPT, ///< Corrupted structure.
+	ERR_NONE,     ///< No error ocurred.
+	ERR_ARG,      ///< Invalid argument.
+	ERR_DONE,     ///< Operation was done already and cannot be repeated.
+	ERR_MEM,      ///< Not enough memory.
+	ERR_CORRUPT,  ///< Corrupted structure.
+	ERR_UNIMPL,   ///< Not implemented.
+	ERR_ILLEGAL,  ///< Not allowed.
+	ERR_INTERNAL, ///< It failed, but its (probably) not your fault.
 
 	__ERR_MAX,
 };
