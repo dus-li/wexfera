@@ -8,6 +8,8 @@
  * @brief Spinlock synchronization primitive.
  */
 
+#include <lib/cleanup.h>
+
 /** Spinlock type. */
 typedef volatile unsigned spinlock_t;
 
@@ -28,3 +30,5 @@ void spinlock_lock(spinlock_t *lock);
  * @param lock Spinlock that is to be unlocked.
  */
 void spinlock_unlock(spinlock_t *lock);
+
+CLEANUP_LOCK(spinlock, spinlock_t, spinlock_lock, spinlock_unlock);

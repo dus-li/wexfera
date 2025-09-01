@@ -40,6 +40,7 @@ DisableFormat: false
 ForEachMacros:
   - list_foreach
   - loop
+  - LOCKED
 
 IndentCaseLabels: false
 IndentPPDirectives: BeforeHash

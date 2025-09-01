@@ -108,33 +108,27 @@ static err_t _alloc_split_block(struct alloc_meta *block, size_t size)
 void *alloc_get(size_t size)
 {
 	size_t total = ALIGN(size + sizeof(struct alloc_meta), 8);
-	err_t  ret   = ERR_MEM;
 
 	if (size == 0)
 		return ERR_PENC(ERR_ARG);
 
-	spinlock_lock(&_alloc_heap_lock);
+	LOCKED_UNTIL_END(spinlock, &_alloc_heap_lock);
 
 	// Attempt to find first block that fits the requested allocation.
 	struct alloc_meta *claim = _alloc_find_fit(total);
 	if (claim == NULL)
-		goto err_unlock;
+		return ERR_PENC(ERR_MEM);
 
 	// Split the block if size allows. Otherwise remove from the list.
 	if (claim->size > total + sizeof(struct alloc_meta)) {
-		ret = _alloc_split_block(claim, total);
+		err_t ret = _alloc_split_block(claim, total);
 		if (ret != ERR_NONE)
-			goto err_unlock;
+			return ERR_PENC(ret);
 	}
 
-	spinlock_unlock(&_alloc_heap_lock);
 	claim->is_free = false;
 
 	return (void *)((uintptr_t)claim + sizeof(*claim));
-
-err_unlock:
-	spinlock_unlock(&_alloc_heap_lock);
-	return ERR_PENC(ret);
 }
 
 static inline struct alloc_meta *_alloc_meta_suc(struct alloc_meta *block)
@@ -190,13 +184,11 @@ err_t alloc_free(void *addr)
 	if (addr == NULL)
 		return -ERR_ARG;
 
-	spinlock_lock(&_alloc_heap_lock);
+	LOCKED_UNTIL_END(spinlock, &_alloc_heap_lock);
 
 	// Detect double free attempts
-	if (block->is_free) {
-		spinlock_unlock(&_alloc_heap_lock);
+	if (block->is_free)
 		return -ERR_DONE;
-	}
 
 	block->is_free = true;
 
@@ -206,12 +198,10 @@ err_t alloc_free(void *addr)
 	// Try to defrag neighbourhood of the freed block.
 	err_t tmp = _alloc_merge(block, suc) ?: _alloc_merge(pre, block);
 	if (tmp != ERR_NONE) {
-		spinlock_unlock(&_alloc_heap_lock);
 		log_error("Block list corruption detected (code:%u)!\n", -tmp);
 		return -ERR_INTERNAL;
 	}
 
-	spinlock_unlock(&_alloc_heap_lock);
 	return ERR_NONE;
 }
 
