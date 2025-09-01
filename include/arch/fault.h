@@ -8,7 +8,6 @@
  * @brief Fault-related declarations and constants.
  */
 
-#include <lib/check.h>
 #include <lib/compiler.h>
 #include <lib/preproc.h>
 #include <lib/types.h>
@@ -29,9 +28,10 @@ typedef void (*fault_hook_t)(const struct fault_regs *);
 
 #define __FAULT_HOOKS_SEC ".data.fault.hooks"
 
-#define FAULT_HOOK(_fn)                                         \
-	CHECK_BUILDTIME(same_type(typeof(&_fn), fault_hook_t)); \
-	const fault_hook_t __section(__FAULT_HOOKS_SEC)         \
+#define FAULT_HOOK(_fn)                                       \
+	_Static_assert(same_type(typeof(&_fn), fault_hook_t), \
+	    "Incorrect signature for a fault hook.");         \
+	const fault_hook_t __section(__FAULT_HOOKS_SEC)       \
 	    CONCAT(__fault_hook, __LINE__) = (_fn);
 
 /**
