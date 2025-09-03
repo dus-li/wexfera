@@ -25,10 +25,6 @@
 	(SCS_SCB_SHCSR_USGFAULTENA | SCS_SCB_SHCSR_BUSFAULTENA | \
 	    SCS_SCB_SHCSR_MEMFAULTENA)
 
-struct fault_stacked {
-	u32 r0, r1, r2, r3, r12, lr, pc, psr;
-};
-
 extern void *const LD_DATA_FAULT_HOOKS_BEG;
 extern void *const LD_DATA_FAULT_HOOKS_END;
 
@@ -54,7 +50,7 @@ extern void __fault_regs_collect(struct fault_regs *out);
  * overwrites those, that are stacked to construct a complete picture of the
  * fault-time situation.
  */
-static void _fault_regs_fill(struct fault_regs *out, struct fault_stacked *in)
+static void _fault_regs_fill(struct fault_regs *out, struct irq_stacked *in)
 {
 	__fault_regs_collect(out);
 
@@ -251,7 +247,7 @@ u32 __fault_get_isr(void)
  * Handle a fault.
  * @param regs Register values of the offending process.
  */
-void fault_dispatcher(struct fault_stacked *regs)
+void fault_dispatcher(struct irq_stacked *regs)
 {
 	struct fault_regs full;
 

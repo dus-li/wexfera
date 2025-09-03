@@ -29,7 +29,7 @@ BEGIN_GLOBAL_OBJECT(__corevtab)
 	.word	0
 	.endr
 
-	default // SVCall
+	.word	__svcall_dispatcher // SVCall
 	default // DebugMonitor
 
 	// Reserved 13

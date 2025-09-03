@@ -2,5 +2,6 @@
 # SPDX-FileCopyrightText: Duszku
 
 sources += files([
-  'alloc.c'
+  'alloc.c',
+  'syscall.c',
 ])

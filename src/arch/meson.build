@@ -8,4 +8,5 @@ sources += files([
   'irq.c',
   'spinlock.c',
   'timer.c',
+  'svcall.S',
 ])

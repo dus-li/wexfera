@@ -8,6 +8,8 @@
  * @brief IRQ-related declarations and constants.
  */
 
+#include <lib/types.h>
+
 /** A type describing a pointer to an interrupt handler function. */
 typedef void (*irq_handler_t)(void);
 
@@ -16,6 +18,10 @@ typedef void (*irq_handler_t)(void);
 
 /** Enable incoming interrupts. */
 #define irq_enable() asm volatile("cpsie i")
+
+struct irq_stacked {
+	u32 r0, r1, r2, r3, r12, lr, pc, psr;
+};
 
 /**
  * Relocate interrupt vector table to memory.
