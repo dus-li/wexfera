@@ -82,3 +82,12 @@ err_t list_remove(struct list *elem);
  */
 #define list_foreach(_i, _head) \
 	for ((_i) = (_head)->next; (_i) != (_head); (_i) = (_i)->next)
+
+/**
+ * Obtain first element of a list.
+ * @param head Head of the list.
+ *
+ * @return NULL if list whose head is @a head is empty or @a head is NULL.
+ * @return Pointer to first element of the list otherwise.
+ */
+struct list *list_car(struct list *head);

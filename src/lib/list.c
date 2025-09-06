@@ -48,3 +48,11 @@ err_t list_remove(struct list *elem)
 
 	return ERR_NONE;
 }
+
+struct list *list_car(struct list *head)
+{
+	if (head == NULL || head->next == head)
+		return NULL;
+
+	return head->next;
+}
