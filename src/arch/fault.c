@@ -28,7 +28,7 @@
 extern void *const LD_DATA_FAULT_HOOKS_BEG;
 extern void *const LD_DATA_FAULT_HOOKS_END;
 
-static void __used __fault_hook_dummy(const struct fault_regs *_)
+static void __used __fault_hook_dummy(const struct ctx_full *_)
 {
 	// Intentionally empty
 }
@@ -37,31 +37,6 @@ FAULT_HOOK(__fault_hook_dummy);
 void fault_enable(void)
 {
 	union32(FAULT_ENABLE_BITS, SCS_SCB_SHCSR);
-}
-
-extern void __fault_regs_collect(struct fault_regs *out);
-
-/**
- * Collect register values from the time of the fault.
- * @param out Output structure.
- * @param in  Stacked registers pushed upon fault trigger.
- *
- * This function collects current values of relevant registers and then
- * overwrites those, that are stacked to construct a complete picture of the
- * fault-time situation.
- */
-static void _fault_regs_fill(struct fault_regs *out, struct irq_stacked *in)
-{
-	__fault_regs_collect(out);
-
-	out->r[0]  = in->r0;
-	out->r[1]  = in->r1;
-	out->r[2]  = in->r2;
-	out->r[3]  = in->r3;
-	out->r[12] = in->r12;
-	out->lr    = in->lr;
-	out->pc    = in->pc;
-	out->psr   = in->psr;
 }
 
 /** Print a separator line of length equal to the register dump. */
@@ -181,7 +156,7 @@ static void (*const __fault_describe_map[])(u32, const char *) = {
 	[FAULT_USAGEFAULT] = __fault_describe_usage,
 };
 
-static void __fault_log_sys(struct fault_regs *full)
+static void __fault_log_sys(struct ctx_full *full)
 {
 	log_always("PRIMASK: %s\n", full->primask & 1U ? "Yes" : "No");
 	log_always("FPCA:    %s\n", full->control & (1U << 2) ? "Yes" : "No");
@@ -196,7 +171,7 @@ static void __fault_log_sys(struct fault_regs *full)
 	log_always("\n");
 }
 
-static void _fault_log(struct fault_regs *full, unsigned type)
+static void _fault_log(struct ctx_full *full, unsigned type)
 {
 	u32 *gprs = full->r;
 	u32  cfsr = read32(SCS_SCB_CFSR);
@@ -223,7 +198,7 @@ static void _fault_log(struct fault_regs *full, unsigned type)
 	__fault_log_sep();
 }
 
-void _fault_run_hooks(const struct fault_regs *regs)
+void _fault_run_hooks(const struct ctx_full *regs)
 {
 	const fault_hook_t *beg = (fault_hook_t *)&LD_DATA_FAULT_HOOKS_BEG;
 	const fault_hook_t *end = (fault_hook_t *)&LD_DATA_FAULT_HOOKS_END;
@@ -249,10 +224,10 @@ u32 __fault_get_isr(void)
  */
 void fault_dispatcher(struct irq_stacked *regs)
 {
-	struct fault_regs full;
+	struct ctx_full full;
 
 	irq_disable();
-	_fault_regs_fill(&full, regs);
+	ctx_collect(&full, regs);
 	_fault_log(&full, __fault_get_isr());
 	_fault_run_hooks(&full);
 

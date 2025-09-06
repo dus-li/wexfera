@@ -8,23 +8,13 @@
  * @brief Fault-related declarations and constants.
  */
 
+#include <arch/context.h>
+
 #include <lib/compiler.h>
 #include <lib/preproc.h>
 #include <lib/types.h>
 
-#define FAULT_GPRS_NO (13)
-
-struct fault_regs {
-	u32 r[FAULT_GPRS_NO];
-	u32 lr;
-	u32 sp;
-	u32 pc;
-	u32 psr;
-	u32 primask;
-	u32 control;
-};
-
-typedef void (*fault_hook_t)(const struct fault_regs *);
+typedef void (*fault_hook_t)(const struct ctx_full *);
 
 #define __FAULT_HOOKS_SEC ".data.fault.hooks"
 

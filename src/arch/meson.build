@@ -2,11 +2,13 @@
 # SPDX-FileCopyrightText: Duszku
 
 sources += files([
+  'context.S',
+  'context.c',
   'corevtab.S',
   'fault.S',
   'fault.c',
   'irq.c',
   'spinlock.c',
-  'timer.c',
   'svcall.S',
+  'timer.c',
 ])
