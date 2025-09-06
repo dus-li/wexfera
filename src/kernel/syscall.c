@@ -3,7 +3,7 @@
 
 #include <arch/irq.h>
 
-#include <kernel/scheduler.h>
+#include <kernel/panic.h>
 #include <kernel/syscall.h>
 
 #include <lib/array_size.h>

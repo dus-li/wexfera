@@ -3,5 +3,6 @@
 
 sources += files([
   'alloc.c',
+  'panic.c',
   'syscall.c',
 ])

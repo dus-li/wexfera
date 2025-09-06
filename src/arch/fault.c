@@ -1,20 +1,17 @@
 /* SPDX-License-Identifier: GPL-3.0-only */
 /* SPDX-FileCopyrightText: Duszku */
 
-#define LOG_FMT(_fmt) _fmt
-
 #include <arch/fault.h>
 #include <arch/irq.h>
 #include <arch/scs.h>
+
+#include <kernel/panic.h>
 
 #include <lib/array_size.h>
 #include <lib/bits.h>
 #include <lib/compiler.h>
 #include <lib/log.h>
 #include <lib/reg.h>
-
-#define FAULT_GPRS_NO  (13)
-#define FAULT_LINE_LEN (66)
 
 #define FAULT_HARDFAULT  (3)
 #define FAULT_MEMMANAGE  (4)
@@ -37,15 +34,6 @@ FAULT_HOOK(__fault_hook_dummy);
 void fault_enable(void)
 {
 	union32(FAULT_ENABLE_BITS, SCS_SCB_SHCSR);
-}
-
-/** Print a separator line of length equal to the register dump. */
-static void __fault_log_sep(void)
-{
-	for (int i = 0; i < FAULT_LINE_LEN; ++i)
-		log_always("-");
-
-	log_always("\n");
 }
 
 static const char *__fault_names[] = {
@@ -156,46 +144,12 @@ static void (*const __fault_describe_map[])(u32, const char *) = {
 	[FAULT_USAGEFAULT] = __fault_describe_usage,
 };
 
-static void __fault_log_sys(struct ctx_full *full)
-{
-	log_always("PRIMASK: %s\n", full->primask & 1U ? "Yes" : "No");
-	log_always("FPCA:    %s\n", full->control & (1U << 2) ? "Yes" : "No");
-	log_always("nPRIV:   %sriviledged\n", full->control & 1 ? "Unp" : "P");
-
-	log_always("Flags:   ");
-	log_always("%s", full->psr & (1U << 31) ? "N" : "");
-	log_always("%s", full->psr & (1U << 30) ? "Z" : "");
-	log_always("%s", full->psr & (1U << 29) ? "C" : "");
-	log_always("%s", full->psr & (1U << 28) ? "V" : "");
-	log_always("%s", full->psr & (1U << 27) ? "Q" : "");
-	log_always("\n");
-}
-
 static void _fault_log(struct ctx_full *full, unsigned type)
 {
-	u32 *gprs = full->r;
-	u32  cfsr = read32(SCS_SCB_CFSR);
-
-	log_always("\nPanic!\n");
+	u32 cfsr = read32(SCS_SCB_CFSR);
 
 	__fault_describe_map[type](cfsr, __fault_names[type]);
-	__fault_log_sep();
-	__fault_log_sys(full);
-	__fault_log_sep();
-
-	log_always("PC was %#10X\n", full->pc);
-	log_always("LR was %#10X\n", full->lr);
-	log_always("SP was %#10X\n", full->sp);
-	__fault_log_sep();
-
-	// Log GPR values
-	for (unsigned i = 0; i < FAULT_GPRS_NO; ++i) {
-		log_always("R%u:%s%#10X  ", i, i >= 10 ? " " : "  ", gprs[i]);
-		if ((i % 4) == 3)
-			log_always("\n");
-	}
-	log_always("\n");
-	__fault_log_sep();
+	_panic(full, __fault_names[type]);
 }
 
 void _fault_run_hooks(const struct ctx_full *regs)

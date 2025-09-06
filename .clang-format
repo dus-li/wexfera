@@ -83,3 +83,4 @@ SortIncludes: true
 KeepEmptyLinesAtTheStartOfBlocks: true
 TypenameMacros:
   - LIST_HEAD
+  - SYSCALL_ARG

@@ -198,7 +198,7 @@ static inline int _log_get_spec(char c)
  * @return @a ERR_NONE on success.
  * @return Negative error code otherwise.
  */
-static int log_vprintf(const char *fmt, va_list args)
+int log_vprintf(const char *fmt, va_list *args)
 {
 	const char *beg, *end;
 	int         ret, spec;
@@ -218,7 +218,7 @@ static int log_vprintf(const char *fmt, va_list args)
 				return -ERR_ARG;
 		}
 
-		ret = _log_specifier_map[spec].proc(&args, beg, end);
+		ret = _log_specifier_map[spec].proc(args, beg, end);
 		if (ret != ERR_NONE)
 			return ret;
 
@@ -246,7 +246,7 @@ int __printfmt(2, 3) _log(enum log_levels lvl, const char *fmt, ...)
 
 	_log_puts(_log_pfx_map[lvl]);
 	va_start(args, fmt);
-	ret = log_vprintf(fmt, args);
+	ret = log_vprintf(fmt, &args);
 	va_end(args);
 	_log_puts("\033[0m");
 

@@ -10,6 +10,8 @@
 
 #include <arch/irq.h>
 
+#include <lib/log.h>
+
 #define CTX_GPRS_NO (13)
 
 struct ctx_full {
@@ -28,3 +30,10 @@ struct ctx_full {
  * @param frame Frame stacked on IRQ entry by the hardware.
  */
 void ctx_collect(struct ctx_full *out, struct irq_stacked *frame);
+
+/**
+ * Print CPU context information.
+ * @param lvl   Log level to use.
+ * @param frame CPU context to print.
+ */
+void ctx_log(enum log_levels lvl, struct ctx_full *frame);

@@ -23,7 +23,8 @@ struct sys_args {
  * Declare a syscall handler that does not return anything.
  * @param _name Name of the syscall handler.
  */
-#define SYSCALL_VOID(_name) void _name(struct sys_args *__syscall_args)
+#define SYSCALL_VOID(_name) \
+	void __used __retain _name(struct sys_args *__syscall_args)
 
 /**
  * Declare a syscall that returns something.
@@ -33,16 +34,19 @@ struct sys_args {
  * then cast them back into a proper value should the return type be something
  * else.
  */
-#define SYSCALL_NONVOID(_name) u32 _name(struct sys_args *__syscall_args)
+#define SYSCALL_NONVOID(_name) \
+	u32 __used __retain _name(struct sys_args *__syscall_args)
 
 /** Get arguments inside a syscall handler. */
 #define SYSCALL_ARGS __syscall_args->args
+
+#define SYSCALL_ARG(_n, _type, _id) _type _id = (_type)SYSCALL_ARGS[_n]
 
 /** Get caller stack frame inside a syscall handler. */
 #define SYSCALL_FRAME __syscall_args->frame
 
 /** List of syscalls. */
-#define SYSCALLS(X)
+#define SYSCALLS(X) X(PANIC, _sys_panic, panic, void, const char *msg)
 
 #define _SYS_NUMBER(_name) CONCAT(SYS_, _name)
 

@@ -4,6 +4,7 @@
 #include <arch/spinlock.h>
 
 #include <kernel/alloc.h>
+#include <kernel/panic.h>
 
 #include <lib/container.h>
 #include <lib/error.h>
@@ -197,10 +198,8 @@ err_t alloc_free(void *addr)
 
 	// Try to defrag neighbourhood of the freed block.
 	err_t tmp = _alloc_merge(block, suc) ?: _alloc_merge(pre, block);
-	if (tmp != ERR_NONE) {
-		log_error("Block list corruption detected (code:%u)!\n", -tmp);
-		return -ERR_INTERNAL;
-	}
+	if (tmp != ERR_NONE)
+		panic("Allocator block list corruption\n");
 
 	return ERR_NONE;
 }

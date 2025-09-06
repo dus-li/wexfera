@@ -12,6 +12,7 @@
 #include <boot/sequence.h>
 
 #include <kernel/alloc.h>
+#include <kernel/panic.h>
 
 #include <lib/log.h>
 
