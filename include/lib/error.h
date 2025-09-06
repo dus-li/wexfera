@@ -3,15 +3,23 @@
 
 #pragma once
 
+/**
+ * @file  error.h
+ * @brief Error codes and error pointers.
+ */
+
 enum errors {
-	ERR_NONE,     ///< No error ocurred.
+	ERR_NONE, ///< No error ocurred.
+
 	ERR_ARG,      ///< Invalid argument.
-	ERR_DONE,     ///< Operation was done already and cannot be repeated.
-	ERR_MEM,      ///< Not enough memory.
 	ERR_CORRUPT,  ///< Corrupted structure.
-	ERR_UNIMPL,   ///< Not implemented.
+	ERR_DONE,     ///< Operation was done already and cannot be repeated.
 	ERR_ILLEGAL,  ///< Not allowed.
 	ERR_INTERNAL, ///< It failed, but its (probably) not your fault.
+	ERR_MEM,      ///< Not enough memory.
+	ERR_TAKEN,    ///< Someone had a quicker hand, partner.
+	ERR_UNIMPL,   ///< Not implemented.
+	ERR_DNE,      ///< Does not exist.
 
 	__ERR_MAX,
 };
