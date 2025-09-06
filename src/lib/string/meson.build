@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: Duszku
 
 sources += files([
-  '__aeabi_memcpy.S',
   '__aeabi_memclr4.S',
+  '__aeabi_memcpy.S',
+  'string.c',
+  'strlen.S',
 ])
