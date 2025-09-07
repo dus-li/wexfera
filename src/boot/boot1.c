@@ -12,7 +12,6 @@
 #include <boot/sequence.h>
 
 #include <kernel/alloc.h>
-#include <kernel/panic.h>
 
 #include <lib/log.h>
 
@@ -28,8 +27,8 @@
  * This function is branched into from @a boot0, which is implemented in
  * Assembly and is responsible for initializing memory and enabling FPU.
  *
- * This function configures faults, relocates IRQ vector table and configures
- * the board clock.
+ * This function configures faults, relocates IRQ vector table, configures board
+ * clock and sets up memory manager.
  */
 void _Noreturn boot1(void)
 {
@@ -42,13 +41,11 @@ void _Noreturn boot1(void)
 
 	log_always("\nThis is Wexfera %s\n", VERSION);
 
-	timer_configure();
 	alloc_init();
 
-	// TODO: Enter scheduler.
-
-	for (;;)
-		;
+	timer_configure();
+	loop {
+	}
 
 	__builtin_unreachable();
 }
