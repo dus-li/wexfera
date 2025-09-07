@@ -6,6 +6,7 @@
 #include <board.h>
 
 #include <lib/compiler.h>
+#include <lib/error.h>
 #include <lib/types.h>
 
 /**
@@ -30,7 +31,7 @@ enum __closed log_levels {
 
 #if defined(BOARD_LOG_BACKEND)
 
-int __printfmt(2, 3) _log(enum log_levels lvl, const char *fmt, ...);
+err_t __printfmt(2, 3) _log(enum log_levels lvl, const char *fmt, ...);
 
 /**
  * Print formatted output.
@@ -42,10 +43,9 @@ int __printfmt(2, 3) _log(enum log_levels lvl, const char *fmt, ...);
  * are limited to what is defined in @ref _log_specifier_map. The specifiers
  * themselves may not support some of the options that may be passed to them.
  *
- * @return @a ERR_NONE on success.
- * @return Negative error code otherwise.
+ * @return @ref err_t
  */
-int log_vprintf(const char *fmt, va_list *args);
+err_t log_vprintf(const char *fmt, va_list *args);
 
   /**
    * Log a message.

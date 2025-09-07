@@ -4,6 +4,7 @@
 #pragma once
 
 #include <lib/compiler.h>
+#include <lib/error.h>
 #include <lib/types.h>
 
 /**
@@ -66,4 +67,4 @@ struct gpio_stm32_pin {
 		.pull  = (_pull)                         \
 	}
 
-i32 gpio_stm32_init(struct gpio_stm32_pin *pin);
+err_t gpio_stm32_init(struct gpio_stm32_pin *pin);

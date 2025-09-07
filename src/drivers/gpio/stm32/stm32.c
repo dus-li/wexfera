@@ -14,7 +14,7 @@
 #define GPIO_STM32_GPIO_OSPEEDR_OFF (0x08)
 #define GPIO_STM32_GPIO_PUPDR_OFF   (0x0C)
 
-i32 gpio_stm32_init(struct gpio_stm32_pin *pin)
+err_t gpio_stm32_init(struct gpio_stm32_pin *pin)
 {
 	static const u32 RCC_AHBENR_OFF = 0x14;
 

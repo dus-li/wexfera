@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <lib/error.h>
 #include <lib/types.h>
 
 /**
@@ -63,10 +64,9 @@ struct usart_stm32_instance {
  * Initialize a USART instance.
  * @param in USART instance descriptor created by @ref USART_STM32_INSTANCE.
  *
- * @returns @a ERR_NONE on success.
- * @returns Negative error code otherwise.
+ * @returns @ref err_t
  */
-i32 usart_stm32_init(struct usart_stm32_instance *in);
+err_t usart_stm32_init(struct usart_stm32_instance *in);
 
 /**
  * Transmit a byte over USART.

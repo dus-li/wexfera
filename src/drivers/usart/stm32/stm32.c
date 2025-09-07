@@ -64,10 +64,9 @@ static inline void usart_stm32_gpio_set_afr(void *bank, u32 pin)
  * Configure GPIO pins to USART alternative function.
  * @param in USART instance whose pins are to be configured.
  *
- * @returns @a ERR_NONE on success.
- * @returns Negative error code otherwise.
+ * @returns @ref err_t
  */
-static i32 usart_stm32_gpio_configure(struct usart_stm32_instance *in)
+static err_t usart_stm32_gpio_configure(struct usart_stm32_instance *in)
 {
 
 	struct gpio_stm32_pin tx = USART_STM32_GPIO_TX(in);
@@ -83,7 +82,7 @@ static i32 usart_stm32_gpio_configure(struct usart_stm32_instance *in)
 	return ERR_NONE;
 }
 
-i32 usart_stm32_init(struct usart_stm32_instance *in)
+err_t usart_stm32_init(struct usart_stm32_instance *in)
 {
 	const u32 CR1_UE = 1U << 0;
 	const u32 CR1_TE = 1U << 3;
