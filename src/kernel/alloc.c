@@ -120,7 +120,7 @@ void *alloc_get(size_t size)
 	if (claim == NULL)
 		return ERR_PENC(ERR_MEM);
 
-	// Split the block if size allows. Otherwise remove from the list.
+	// Split the block if size allows.
 	if (claim->size > total + sizeof(struct alloc_meta)) {
 		err_t ret = _alloc_split_block(claim, total);
 		if (ret != ERR_NONE)
