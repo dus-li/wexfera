@@ -26,10 +26,10 @@
  * be several default cleanups for the same type and as long as they have
  * different names, they function as different classes of data.
  */
-#define CLEANUP_DEFAULT(_name, _type, _func)                         \
-	static inline __used void _CLEANUP_NAME(_name)(_type * data) \
-	{                                                            \
-		_func(*data);                                        \
+#define CLEANUP_DEFAULT(_name, _type, _func)                  \
+	static inline void _CLEANUP_NAME(_name)(_type * data) \
+	{                                                     \
+		_func(*data);                                 \
 	}
 
 /**
@@ -56,15 +56,15 @@
  * @ref LOCKED_UNTIL_END and @ref LOCKED macros for a safer and cleaner lock
  * management.
  */
-#define CLEANUP_LOCK(_name, _type, _lock, _unlock)                           \
-	static inline __used _type *_CLEANUP_LOCK_NAME(_name)(_type * data)  \
-	{                                                                    \
-		_lock(data);                                                 \
-		return data;                                                 \
-	}                                                                    \
-	static inline __used void _CLEANUP_UNLOCK_NAME(_name)(_type * *data) \
-	{                                                                    \
-		_unlock(*data);                                              \
+#define CLEANUP_LOCK(_name, _type, _lock, _unlock)                    \
+	static inline _type *_CLEANUP_LOCK_NAME(_name)(_type * data)  \
+	{                                                             \
+		_lock(data);                                          \
+		return data;                                          \
+	}                                                             \
+	static inline void _CLEANUP_UNLOCK_NAME(_name)(_type * *data) \
+	{                                                             \
+		_unlock(*data);                                       \
 	}
 
 #define _CLEANUP_DECL_LOCK(_name, _plock) \
