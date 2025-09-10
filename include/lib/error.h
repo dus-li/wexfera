@@ -20,6 +20,7 @@ enum errors {
 	ERR_TAKEN,    ///< Someone had a quicker hand, partner.
 	ERR_UNIMPL,   ///< Not implemented.
 	ERR_DNE,      ///< Does not exist.
+	ERR_SIZE,     ///< Incorrect size.
 
 	__ERR_MAX,
 };

@@ -8,6 +8,8 @@
  * @brief String and memory operations.
  */
 
+#include <lib/compiler.h>
+#include <lib/error.h>
 #include <lib/types.h>
 
 /**
@@ -46,3 +48,15 @@ size_t strlen(const char *s);
  * @return @a dest
  */
 char *strncpy(char *dest, const char *src, size_t n);
+
+/**
+ * Place formatted output in a buffer.
+ * @param dest Destination buffer.
+ * @param size Size of @a dest.
+ * @param fmt  Format string.
+ * @param ...  Argument list.
+ *
+ * @return @ref err_t
+ */
+err_t _snprintf(char *dest, size_t size, const char *fmt, ...);
+#define snprintf(...) _snprintf(__VA_ARGS__)
