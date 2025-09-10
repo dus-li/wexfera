@@ -3,16 +3,16 @@
 
 #pragma once
 
+/**
+ * @file  log.h
+ * @brief Logging and printing.
+ */
+
 #include <board.h>
 
 #include <lib/compiler.h>
 #include <lib/error.h>
 #include <lib/types.h>
-
-/**
- * @file  log.h
- * @brief Logging and printing.
- */
 
 #ifndef LOG_FMT
   #define LOG_FMT(_fmt) __FILE_NAME__ ": " _fmt

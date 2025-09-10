@@ -3,14 +3,14 @@
 
 #pragma once
 
-#include <lib/compiler.h>
-#include <lib/error.h>
-#include <lib/types.h>
-
 /**
  * @file  stm32.h
  * @brief STM32 GPIO driver.
  */
+
+#include <lib/compiler.h>
+#include <lib/error.h>
+#include <lib/types.h>
 
 /**
  * STM32 GPIO pin descriptor.

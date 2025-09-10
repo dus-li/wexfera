@@ -1,17 +1,19 @@
 /* SPDX-License-Identifier: GPL-3.0-only */
 /* SPDX-FileCopyrightText: Duszku */
 
+#pragma once
+
+/**
+ * @file  panic.h
+ * @brief Unrecoverable error reporting.
+ */
+
 #include <arch/context.h>
 
 #include <kernel/syscall.h>
 
 #include <lib/compiler.h>
 #include <lib/types.h>
-
-/**
- * @file  panic.h
- * @brief Unrecoverable error reporting.
- */
 
 /** Panic syscall handler. */
 SYSCALL_VOID(_sys_panic);

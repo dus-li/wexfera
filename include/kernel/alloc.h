@@ -3,16 +3,16 @@
 
 #pragma once
 
+/**
+ * @file  alloc.h
+ * @brief Memory management and dynamic allocations.
+ */
+
 #include <board.h>
 
 #include <lib/cleanup.h>
 #include <lib/error.h>
 #include <lib/types.h>
-
-/**
- * @file  alloc.h
- * @brief Memory management and dynamic allocations.
- */
 
 /**
  * Initialize memory manager.

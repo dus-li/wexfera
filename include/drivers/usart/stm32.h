@@ -3,13 +3,13 @@
 
 #pragma once
 
-#include <lib/error.h>
-#include <lib/types.h>
-
 /**
  * @file  stm32.h
  * @brief STM32 USART driver.
  */
+
+#include <lib/error.h>
+#include <lib/types.h>
 
 /**
  * STM32 USART instance descriptor.
