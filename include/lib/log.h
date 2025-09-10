@@ -33,28 +33,13 @@ enum __closed log_levels {
 
 err_t __printfmt(2, 3) _log(enum log_levels lvl, const char *fmt, ...);
 
-/**
- * Print formatted output.
- * @param fmt  Format string.
- * @param args List of arguments for conversions.
- *
- * This serves a similar purpose to standard C libraries' vprintf, however it
- * does not return number of successful conversions and the format specifiers
- * are limited to what is defined in @ref _log_specifier_map. The specifiers
- * themselves may not support some of the options that may be passed to them.
- *
- * @return @ref err_t
- */
-err_t log_vprintf(const char *fmt, va_list *args);
-
   /**
    * Log a message.
    * @param _fmt Format string.
    * @param ...  Optional arguments.
    *
    * To obtain a consistent output for all prints in a file, one can
-   * define
-   * @a LOG_FMT before including @ref log.h.
+   * define @a LOG_FMT before including @ref log.h.
    */
   #define log_always(_fmt, ...) _log(LOG_ALWAYS, LOG_FMT(_fmt), ##__VA_ARGS__)
 
@@ -96,7 +81,6 @@ err_t log_vprintf(const char *fmt, va_list *args);
 
 #else
   #define _log(...)
-  #define log_vprintf(...)
   #define log_debug(...)
   #define log_info(...)
   #define log_warn(...)

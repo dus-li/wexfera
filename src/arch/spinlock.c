@@ -6,9 +6,6 @@
 
 #include <lib/compiler.h>
 
-#define SPINLOCK_UNLOCKED (0)
-#define SPINLOCK_LOCKED   (1)
-
 void spinlock_init(spinlock_t *lock)
 {
 	*lock = SPINLOCK_UNLOCKED;

@@ -77,6 +77,9 @@ IncludeCategories:
   - Regex: '^<drivers/.*\.h'
     Priority: 7
     SortPriority: 70
+  - Regex: '^".*\.h'
+    Priority: 8
+    SortPriority: 80
 
 IncludeIsMainRegex: 'NOTHING_AKJSDHFKJAHD87F6A8S70DUHAKJSNBDVASDJHFAUISHF'
 SortIncludes: true

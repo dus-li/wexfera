@@ -10,8 +10,13 @@
 
 #include <lib/cleanup.h>
 
+#define SPINLOCK_UNLOCKED (0)
+#define SPINLOCK_LOCKED   (1)
+
 /** Spinlock type. */
 typedef volatile unsigned spinlock_t;
+
+#define SPINLOCK_INITIALIZER SPINLOCK_UNLOCKED
 
 /**
  * Initialize a spinlock.

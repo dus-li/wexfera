@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: Duszku
 
 subdir('string')
+subdir('_printfmt')
 
 sources += files([
   'list.c',
