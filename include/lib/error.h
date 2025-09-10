@@ -8,6 +8,8 @@
  * @brief Error codes and error pointers.
  */
 
+#include <lib/types.h>
+
 enum errors {
 	ERR_NONE, ///< No error ocurred.
 
@@ -37,7 +39,7 @@ enum errors {
  * in @ref errors, but for instance reserve positive numbers as legal return
  * values. Such functions should be declared as @a int or @a ssize_t or whatnot.
  */
-typedef enum errors err_t;
+typedef i32 err_t;
 
 /**
  * Encode an error in a pointer.
